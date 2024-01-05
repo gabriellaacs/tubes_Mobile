@@ -56,7 +56,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
         Text(
           "Welcome $nama",
           style: GoogleFonts.poppins(
-            fontSize: 32,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_example/constants.dart';
 import 'package:food_example/models/category.dart';
 import 'package:food_example/models/food.dart';
+import 'package:food_example/screens/main_screen.dart';
 import 'package:food_example/widgets/categories.dart';
 import 'package:food_example/widgets/home_appbar.dart';
 import 'package:food_example/widgets/home_search_bar.dart';
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Categories(currentCat: currentCat),
                 const SizedBox(height: 20),
                 const QuickAndFastList(),
+                const MainScreen()
               ],
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:food_example/constants.dart';
 import 'package:food_example/firebase_options.dart';
 import 'package:food_example/screens/intro_login_register/intro_page.dart';
 import 'package:food_example/screens/main_screen.dart';
+import 'package:food_example/screens/profill/profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kbackgroundColor,
         useMaterial3: true,
       ),
-      home: IntroPage(),
+      home: ProfileScreen(),
     );
   }
 }

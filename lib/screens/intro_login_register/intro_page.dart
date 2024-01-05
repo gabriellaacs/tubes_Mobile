@@ -114,7 +114,7 @@ class IntroPage extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => loginadmin()),
+                                          builder: (context) => LoginAdmin()),
                                     ); // Tutup dialog
                                   },
                                 ),

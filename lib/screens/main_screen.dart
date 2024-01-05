@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_example/constants.dart';
 import 'package:food_example/screens/cart_screen.dart';
 import 'package:food_example/screens/home_screen.dart';
-import 'package:food_example/screens/profile_screen.dart';
+import 'package:food_example/screens/profill/profile.dart';
+// import 'package:food_example/screens/profile_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   List screens = const [
     HomeScreen(),
     CartScreen(),
-    profile_screen(),
+    ProfileScreen(),
   ];
 
   @override
