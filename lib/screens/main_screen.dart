@@ -56,11 +56,11 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 children: [
                   Icon(
-                    currentTab == 1 ? Iconsax.box : Iconsax.box_tick,
+                    currentTab == 1 ? Iconsax.lovely: Iconsax.lovely1,
                     color: currentTab == 1 ? kprimaryColor : Colors.grey,
                   ),
                   Text(
-                    "Cart",
+                    "Favorite",
                     style: TextStyle(
                       fontSize: 14,
                       color: currentTab == 1 ? kprimaryColor : Colors.grey,

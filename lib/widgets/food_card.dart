@@ -49,13 +49,6 @@ class FoodCard extends StatelessWidget {
                       size: 18,
                       color: Colors.grey,
                     ),
-                    Text(
-                      "${food.cal} Cal",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
-                    ),
                     const Text(
                       " · ",
                       style: TextStyle(color: Colors.grey),

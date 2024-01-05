@@ -32,7 +32,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   backgroundColor: kprimaryColor,
                   foregroundColor: Colors.white,
                 ),
-                child: const Text("Cart"),
+                child: const Text("Add to favorite"),
               ),
             ),
             const SizedBox(width: 10),
@@ -48,8 +48,8 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   ),
                 ),
                 icon: Icon(
-                  widget.food.isLiked ? Iconsax.heart5 : Iconsax.heart,
-                  color: widget.food.isLiked ? Colors.red : Colors.black,
+                  widget.food.isLiked ? Iconsax.location : Iconsax.location,
+                  color: widget.food.isLiked ? Colors.red : const Color.fromARGB(255, 167, 158, 158),
                   size: 20,
                 ),
               ),
@@ -207,151 +207,151 @@ class _RecipeScreenState extends State<RecipeScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Ingredients",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            "How many servings?",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                      const Spacer(),
-                      FoodCounter(
-                        currentNumber: currentNumber,
-                        onAdd: () => setState(() {
-                          currentNumber++;
-                        }),
-                        onRemove: () {
-                          if (currentNumber != 1) {
-                            setState(() {
-                              currentNumber--;
-                            });
-                          }
-                        },
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     const Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         Text(
+                  //           "Ingredients",
+                  //           style: TextStyle(
+                  //             fontSize: 20,
+                  //             fontWeight: FontWeight.bold,
+                  //           ),
+                  //         ),
+                  //         SizedBox(height: 10),
+                  //         Text(
+                  //           "How many servings?",
+                  //           style: TextStyle(
+                  //             fontSize: 14,
+                  //             color: Colors.grey,
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //     const Spacer(),
+                  //     FoodCounter(
+                  //       currentNumber: currentNumber,
+                  //       onAdd: () => setState(() {
+                  //         currentNumber++;
+                  //       }),
+                  //       onRemove: () {
+                  //         if (currentNumber != 1) {
+                  //           setState(() {
+                  //             currentNumber--;
+                  //           });
+                  //         }
+                  //       },
+                  //     )
+                  //   ],
+                  // ),
                   const SizedBox(height: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                image: AssetImage(widget.food.image),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            "Order",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            "1",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey.shade400,
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(
-                        height: 20,
-                        color: Colors.grey.shade300,
-                      ),
-                      // Row(
-                      //   children: [
-                      //     Container(
-                      //       width: 60,
-                      //       height: 60,
-                      //       decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(15),
-                      //         image: DecorationImage(
-                      //           image: AssetImage(widget.food.image),
-                      //           fit: BoxFit.fill,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(width: 10),
-                      //     const Text(
-                      //       "Ramen Noodles",
-                      //       style: TextStyle(
-                      //         fontSize: 16,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //     ),
-                      //     const Spacer(),
-                      //     Text(
-                      //       "400g",
-                      //       style: TextStyle(
-                      //         fontSize: 16,
-                      //         color: Colors.grey.shade400,
-                      //       ),
-                      //     )
-                      //   ],
-                      // ),
-                      // Divider(
-                      //   height: 20,
-                      //   color: Colors.grey.shade300,
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Container(
-                      //       width: 60,
-                      //       height: 60,
-                      //       decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(15),
-                      //         image: DecorationImage(
-                      //           image: AssetImage(widget.food.image),
-                      //           fit: BoxFit.fill,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(width: 10),
-                      //     const Text(
-                      //       "Ramen Noodles",
-                      //       style: TextStyle(
-                      //         fontSize: 16,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //     ),
-                      //     const Spacer(),
-                      //     Text(
-                      //       "400g",
-                      //       style: TextStyle(
-                      //         fontSize: 16,
-                      //         color: Colors.grey.shade400,
-                      //       ),
-                      //     )
-                      //   ],
-                      // ),
-                    ],
-                  ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Row(
+                  //       children: [
+                  //         Container(
+                  //           width: 60,
+                  //           height: 60,
+                  //           decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(15),
+                  //             image: DecorationImage(
+                  //               image: AssetImage(widget.food.image),
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         const SizedBox(width: 10),
+                  //         const Text(
+                  //           "Order",
+                  //           style: TextStyle(
+                  //             fontSize: 16,
+                  //             fontWeight: FontWeight.bold,
+                  //           ),
+                  //         ),
+                  //         const Spacer(),
+                  //         Text(
+                  //           "1",
+                  //           style: TextStyle(
+                  //             fontSize: 16,
+                  //             color: Colors.grey.shade400,
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //     Divider(
+                  //       height: 20,
+                  //       color: Colors.grey.shade300,
+                  //     ),
+                  //     // Row(
+                  //     //   children: [
+                  //     //     Container(
+                  //     //       width: 60,
+                  //     //       height: 60,
+                  //     //       decoration: BoxDecoration(
+                  //     //         borderRadius: BorderRadius.circular(15),
+                  //     //         image: DecorationImage(
+                  //     //           image: AssetImage(widget.food.image),
+                  //     //           fit: BoxFit.fill,
+                  //     //         ),
+                  //     //       ),
+                  //     //     ),
+                  //     //     const SizedBox(width: 10),
+                  //     //     const Text(
+                  //     //       "Ramen Noodles",
+                  //     //       style: TextStyle(
+                  //     //         fontSize: 16,
+                  //     //         fontWeight: FontWeight.bold,
+                  //     //       ),
+                  //     //     ),
+                  //     //     const Spacer(),
+                  //     //     Text(
+                  //     //       "400g",
+                  //     //       style: TextStyle(
+                  //     //         fontSize: 16,
+                  //     //         color: Colors.grey.shade400,
+                  //     //       ),
+                  //     //     )
+                  //     //   ],
+                  //     // ),
+                  //     // Divider(
+                  //     //   height: 20,
+                  //     //   color: Colors.grey.shade300,
+                  //     // ),
+                  //     // Row(
+                  //     //   children: [
+                  //     //     Container(
+                  //     //       width: 60,
+                  //     //       height: 60,
+                  //     //       decoration: BoxDecoration(
+                  //     //         borderRadius: BorderRadius.circular(15),
+                  //     //         image: DecorationImage(
+                  //     //           image: AssetImage(widget.food.image),
+                  //     //           fit: BoxFit.fill,
+                  //     //         ),
+                  //     //       ),
+                  //     //     ),
+                  //     //     const SizedBox(width: 10),
+                  //     //     const Text(
+                  //     //       "Ramen Noodles",
+                  //     //       style: TextStyle(
+                  //     //         fontSize: 16,
+                  //     //         fontWeight: FontWeight.bold,
+                  //     //       ),
+                  //     //     ),
+                  //     //     const Spacer(),
+                  //     //     Text(
+                  //     //       "400g",
+                  //     //       style: TextStyle(
+                  //     //         fontSize: 16,
+                  //     //         color: Colors.grey.shade400,
+                  //     //       ),
+                  //     //     )
+                  //     //   ],
+                  //     // ),
+                  //   ],
+                  // ),
                   const SizedBox(height: 20),
                 ],
               ),
