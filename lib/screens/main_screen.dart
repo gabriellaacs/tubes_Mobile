@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   int currentTab = 0;
   List screens = const [
     HomeScreen(),
-    cart_screen(),
+    CartScreen(),
     profile_screen(),
   ];
 
