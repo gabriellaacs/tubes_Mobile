@@ -53,7 +53,6 @@ class _LoginScreenState extends State<LoginAdmin> {
                 ),
               ),
               const SizedBox(height: 50),
-
               Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
@@ -74,9 +73,7 @@ class _LoginScreenState extends State<LoginAdmin> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
-
               Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
@@ -98,7 +95,6 @@ class _LoginScreenState extends State<LoginAdmin> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 100.0),
               ElevatedButton(
                 onPressed: () async {
@@ -118,7 +114,7 @@ class _LoginScreenState extends State<LoginAdmin> {
                       if (userCredential.user!.email == 'admin@admin.com') {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomeAdmin()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       } else {
                         print('Akses ditolak. Pengguna bukan admin.');
@@ -131,7 +127,8 @@ class _LoginScreenState extends State<LoginAdmin> {
                     print('Entered Email: ${_emailController.text.trim()}');
                     print(
                         'Entered Password: ${_passwordController.text.trim()}');
-                  }},
+                  }
+                },
                 child: Text(
                   'Login',
                   style: GoogleFonts.poppins(fontSize: 18),
@@ -149,7 +146,6 @@ class _LoginScreenState extends State<LoginAdmin> {
                 ),
               ),
               const SizedBox(height: 20.0),
-             
             ],
           ),
         ),

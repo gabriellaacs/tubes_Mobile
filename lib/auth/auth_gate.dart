@@ -15,7 +15,7 @@ class AuthGate extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data?.email == "admin@admin.com") {
-              return const HomeAdmin();
+              return const HomePage();
             } else {
               return const HomeScreen();
             }
