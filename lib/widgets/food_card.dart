@@ -5,10 +5,17 @@ import 'package:iconsax/iconsax.dart';
 
 class FoodCard extends StatelessWidget {
   final Food food;
-  const FoodCard({super.key, required this.food});
+  const FoodCard({Key? key, required this.food}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Print statements to debug and check data
+    print('FoodCard name: ${food.name}');
+    print('FoodCard price: ${food.price}');
+    print('FoodCard rating: ${food.rating}');
+    print('FoodCard description: ${food.description}');
+    print('FoodCard pictureUrl: ${food.pictureUrl}');
+
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -25,11 +32,12 @@ class FoodCard extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 130,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage(food.image),
+                      image: NetworkImage(
+                          food.pictureUrl), // Assuming 'image' is a URL
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -59,7 +67,7 @@ class FoodCard extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     Text(
-                      "${food.time} Min",
+                      "Rp. ${food.price}",
                       style: const TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
@@ -73,7 +81,7 @@ class FoodCard extends StatelessWidget {
                         color: Colors.yellow.shade700, size: 20),
                     const SizedBox(width: 5),
                     Text(
-                      "${food.rate}/5",
+                      "${food.rating}/5",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade600,
@@ -81,7 +89,7 @@ class FoodCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      "(${food.reviews} Reviews)",
+                      "(${food.description} Reviews)",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade400,

@@ -27,6 +27,7 @@ class _AddRecommendationFormState extends State<AddRecommendationForm> {
   String _location = '';
   String _description = '';
   double _rating = 0; // New variable for rating
+  double _price = 0.0; // Add this variable for price
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final firebase_storage.FirebaseStorage _storage =
@@ -141,6 +142,20 @@ class _AddRecommendationFormState extends State<AddRecommendationForm> {
                 },
               ),
               SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Price'),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a price';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _price = double.parse(value!);
+                },
+              ),
+              SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   _submitForm();
@@ -182,7 +197,8 @@ class _AddRecommendationFormState extends State<AddRecommendationForm> {
         'destinationName': _destinationName,
         'location': _location,
         'description': _description,
-        'rating': _rating, // Add rating field
+        'rating': _rating,
+        'price':_price // Add rating field
       });
 
       // Data successfully saved to Firestore

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kbackgroundColor,
         useMaterial3: true,
       ),
-      home: ProfileScreen(),
+      home: IntroPage(),
     );
   }
 }

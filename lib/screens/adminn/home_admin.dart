@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'add_form.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/people_also_like_model.dart';
 import '../../models/category_model.dart';
 import '../../widgets/reuseable_text.dart';
@@ -20,15 +20,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late final TabController tabController;
-  final EdgeInsetsGeometry padding =
-      const EdgeInsets.symmetric(horizontal: 10.0);
+  late final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Add a List to store your places data
+  List<TabBarModel> placesData = [];
 
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
+    fetchDataFromFirestore(); // Call the method to fetch data
     super.initState();
   }
+
+  // Add this method to fetch data from Firestore
+  void fetchDataFromFirestore() async {
+    try {
+      // Use the 'places' collection reference (modify as per your Firestore structure)
+      var snapshot = await _firestore.collection('admin').get();
+
+      // Extract data from the snapshot
+      List<TabBarModel> places = snapshot.docs.map((doc) {
+        return TabBarModel(
+          // Map your fields accordingly
+          title:
+              doc['title'] ?? '', // Provide a default value if 'title' is null
+          location: doc['location'] ??
+              '', // Provide a default value if 'location' is null
+          image: doc['image'] ?? '',
+          price: doc['price'] != null ? doc['price'].toDouble() : null,
+        );
+      }).toList();
+
+      setState(() {
+        placesData = places;
+      });
+    } catch (error) {
+      print('Error fetching data from Firestore: $error');
+    }
+  }
+
+  late final TabController tabController;
+  final EdgeInsetsGeometry padding =
+      const EdgeInsets.symmetric(horizontal: 10.0);
 
   @override
   void dispose() {
@@ -56,7 +89,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     FadeInUp(
                       delay: const Duration(milliseconds: 300),
                       child: const AppText(
-                        text: "Wellcome!",
+                        text: "Welcome!",
                         size: 35,
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -158,9 +191,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             physics: const NeverScrollableScrollPhysics(),
                             controller: tabController,
                             children: [
-                              TabViewChild(
-                                list: places,
-                              ),
+                              TabViewChild(list: placesData),
                               TabViewChild(list: inspiration),
                             ]),
                       ),

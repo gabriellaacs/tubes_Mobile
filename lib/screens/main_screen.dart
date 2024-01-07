@@ -92,26 +92,6 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
-            // GestureDetector(
-            //   onTap: () => setState(() {
-            //     currentTab = 3;
-            //   }),
-            //   child: Column(
-            //     children: [
-            //       Icon(
-            //         currentTab == 3 ? Iconsax.people2 : Iconsax.people,
-            //         color: currentTab == 3 ? Colors.black : Colors.grey,
-            //       ),
-            //       Text(
-            //         "Profile",
-            //         style: TextStyle(
-            //           fontSize: 14,
-            //           color: currentTab == 3 ? kprimaryColor : Colors.grey,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),

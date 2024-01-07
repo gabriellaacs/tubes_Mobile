@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_example/screens/locator_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -62,7 +63,12 @@ class _HomeAppbarState extends State<HomeAppbar> {
         ),
         const Spacer(),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+             Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LocationScreen()),
+            );
+          },
           style: IconButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -70,7 +76,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
             backgroundColor: Colors.white,
             fixedSize: const Size(55, 55),
           ),
-          icon: const Icon(Iconsax.notification),
+          icon: const Icon(Iconsax.location),
         ),
       ],
     );;

@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_example/auth/auth_gate.dart';
+import 'package:food_example/constants.dart';
+import 'package:food_example/screens/cart_screen.dart';
+import 'package:food_example/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -12,6 +16,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
+   int currentTab = 2;
+  
+  List screens = const [
+    HomeScreen(),
+    CartScreen(),
+    ProfileScreen(),
+  ];
    String nama = '';
   // String alamat = '';
   String nomor = '';
@@ -100,7 +111,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                       child: Column(
                         children: [
                           Text(
-                            'Address', // Teks kecil pertama
+                            'Lokasi Sekarang', // Teks kecil pertama
                             style: GoogleFonts.poppins(
                                 fontSize: 15, fontWeight: FontWeight.w400),
                           ),
@@ -150,20 +161,6 @@ class _ProfileScreen extends State<ProfileScreen> {
               ],
             ),
             const SizedBox(height: 60),
-            Text(
-              'Recommended Places', // Teks yang Anda ingin bold
-              style: TextStyle(
-                fontSize:
-                    20, // Anda bisa sesuaikan ukuran font sesuai keinginan
-                fontWeight:
-                    FontWeight.bold, // Ini akan membuat teks menjadi bold
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Memastikan ada sedikit ruang sebelum tombol
-
-// Spacer untuk menempatkan tombol di tengah vertikal
-            // Spacer(),
             SizedBox(
               height: 40,
             ),
@@ -194,6 +191,90 @@ class _ProfileScreen extends State<ProfileScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            GestureDetector(
+              onTap: () => setState(() {
+                currentTab = 0;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              }),
+              child: Column(
+                children: [
+                  Icon(
+                    currentTab == 0 ? Iconsax.home5 : Iconsax.home,
+                    color: currentTab == 0 ? kprimaryColor : Colors.grey,
+                  ),
+                  Text(
+                    "Home",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: currentTab == 0 ? kprimaryColor : Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () => setState(() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartScreen()),
+                );
+                currentTab = 1;
+              }),
+              child: Column(
+                children: [
+                  Icon(
+                    currentTab == 1 ? Iconsax.lovely : Iconsax.lovely1,
+                    color: currentTab == 1 ? kprimaryColor : Colors.grey,
+                  ),
+                  Text(
+                    "Favorite",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: currentTab == 1 ? kprimaryColor : Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () => setState(() {
+                currentTab = 2;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              }),
+              child: Column(
+                children: [
+                  Icon(
+                    currentTab == 2
+                        ? Iconsax.personalcard5
+                        : Iconsax.personalcard,
+                    color: currentTab == 2 ? kprimaryColor : Colors.grey,
+                  ),
+                  Text(
+                    "Profile",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: currentTab == 2 ? kprimaryColor : Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+
     );
   }
 }

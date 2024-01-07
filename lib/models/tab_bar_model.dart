@@ -2,13 +2,14 @@ class TabBarModel {
   final String title;
   final String location;
   final String image;
-  final int price;
+  final double? price; // Add the price field
 
-  TabBarModel(
-      {required this.title,
-      required this.location,
-      required this.image,
-      required this.price});
+  TabBarModel({
+    required this.title,
+    required this.location,
+    required this.image,
+    this.price, // Initialize the price field
+  });
 }
 
 List<TabBarModel> places = [

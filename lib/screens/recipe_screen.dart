@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_example/constants.dart';
 import 'package:food_example/models/food.dart';
+import 'package:food_example/screens/cart_screen.dart';
 import 'package:food_example/widgets/food_counter.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:food_example/widgets/cart_state.dart';
 
 class RecipeScreen extends StatefulWidget {
   final Food food;
-  const RecipeScreen({super.key, required this.food});
+  const RecipeScreen({Key? key, required this.food}) : super(key: key);
 
   @override
   State<RecipeScreen> createState() => _RecipeScreenState();
@@ -15,9 +17,18 @@ class RecipeScreen extends StatefulWidget {
 
 class _RecipeScreenState extends State<RecipeScreen> {
   int currentNumber = 1;
+  // static List<Map<String, dynamic>> cartItems = [];
 
   @override
   Widget build(BuildContext context) {
+    print('Food Details:');
+    print('Name: ${widget.food.name}');
+    print('Picture URL: ${widget.food.pictureUrl}');
+    print('Description: ${widget.food.description}');
+    print('Location: ${widget.food.location}');
+    print('Price: ${widget.food.price}');
+    print('Rating: ${widget.food.rating}');
+
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
@@ -26,8 +37,17 @@ class _RecipeScreenState extends State<RecipeScreen> {
           children: [
             Expanded(
               flex: 6,
-              child: ElevatedButton(
-                onPressed: () {},
+              child: ElevatedButton(  
+                onPressed: () {
+                  // Call a function to add the item to the favorite list
+                  addToFavorite(widget.food.name, widget.food.price);
+
+                  // Navigate to the favorite page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kprimaryColor,
                   foregroundColor: Colors.white,
@@ -49,7 +69,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 ),
                 icon: Icon(
                   widget.food.isLiked ? Iconsax.location : Iconsax.location,
-                  color: widget.food.isLiked ? Colors.red : const Color.fromARGB(255, 167, 158, 158),
+                  color: widget.food.isLiked
+                      ? Colors.red
+                      : const Color.fromARGB(255, 167, 158, 158),
                   size: 20,
                 ),
               ),
@@ -65,10 +87,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
               children: [
                 Positioned(
                   child: Container(
-                    height: MediaQuery.of(context).size.width - 20,
+                    width: double.infinity,
+                    height: 130,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                        image: AssetImage(widget.food.image),
+                        image: NetworkImage(
+                            widget.food.pictureUrl), // Fix this line
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -120,6 +145,43 @@ class _RecipeScreenState extends State<RecipeScreen> {
                         topLeft: Radius.circular(20),
                       ),
                     ),
+                    // Additional details can be added here
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.food.name,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          widget.food.description,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Location: ${widget.food.location}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Price: \$${widget.food.price}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -151,28 +213,12 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   Row(
                     children: [
                       // const Icon(
-                      //   Iconsax.flash_1,
+                      //   Iconsax.clock,
                       //   size: 20,
                       //   color: Colors.grey,
                       // ),
-                      // Text(
-                      //   "${widget.food.cal} Cal",
-                      //   style: const TextStyle(
-                      //     fontSize: 14,
-                      //     color: Colors.grey,
-                      //   ),
-                      // ),
-                      // const Text(
-                      //   " · ",
-                      //   style: TextStyle(color: Colors.grey),
-                      // ),
-                      const Icon(
-                        Iconsax.clock,
-                        size: 20,
-                        color: Colors.grey,
-                      ),
                       Text(
-                        "${widget.food.time} Min",
+                        "Rp. ${widget.food.price}",
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.grey,
@@ -190,168 +236,30 @@ class _RecipeScreenState extends State<RecipeScreen> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        "${widget.food.rate}/5",
+                        "${widget.food.rating}/5",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey.shade600,
                         ),
                       ),
                       const SizedBox(width: 5),
-                      Text(
-                        "(${widget.food.reviews} Reviews)",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade400,
-                        ),
-                      )
+                      // Text(
+                      //   "(${widget.food.description} Reviews)",
+                      //   style: TextStyle(
+                      //     fontSize: 14,
+                      //     color: Colors.grey.shade400,
+                      //   ),
+                      // )
                     ],
                   ),
                   const SizedBox(height: 20),
-                  // Row(
-                  //   children: [
-                  //     const Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         Text(
-                  //           "Ingredients",
-                  //           style: TextStyle(
-                  //             fontSize: 20,
-                  //             fontWeight: FontWeight.bold,
-                  //           ),
-                  //         ),
-                  //         SizedBox(height: 10),
-                  //         Text(
-                  //           "How many servings?",
-                  //           style: TextStyle(
-                  //             fontSize: 14,
-                  //             color: Colors.grey,
-                  //           ),
-                  //         )
-                  //       ],
-                  //     ),
-                  //     const Spacer(),
-                  //     FoodCounter(
-                  //       currentNumber: currentNumber,
-                  //       onAdd: () => setState(() {
-                  //         currentNumber++;
-                  //       }),
-                  //       onRemove: () {
-                  //         if (currentNumber != 1) {
-                  //           setState(() {
-                  //             currentNumber--;
-                  //           });
-                  //         }
-                  //       },
-                  //     )
-                  //   ],
-                  // ),
-                  const SizedBox(height: 20),
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     Row(
-                  //       children: [
-                  //         Container(
-                  //           width: 60,
-                  //           height: 60,
-                  //           decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(15),
-                  //             image: DecorationImage(
-                  //               image: AssetImage(widget.food.image),
-                  //               fit: BoxFit.fill,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         const SizedBox(width: 10),
-                  //         const Text(
-                  //           "Order",
-                  //           style: TextStyle(
-                  //             fontSize: 16,
-                  //             fontWeight: FontWeight.bold,
-                  //           ),
-                  //         ),
-                  //         const Spacer(),
-                  //         Text(
-                  //           "1",
-                  //           style: TextStyle(
-                  //             fontSize: 16,
-                  //             color: Colors.grey.shade400,
-                  //           ),
-                  //         )
-                  //       ],
-                  //     ),
-                  //     Divider(
-                  //       height: 20,
-                  //       color: Colors.grey.shade300,
-                  //     ),
-                  //     // Row(
-                  //     //   children: [
-                  //     //     Container(
-                  //     //       width: 60,
-                  //     //       height: 60,
-                  //     //       decoration: BoxDecoration(
-                  //     //         borderRadius: BorderRadius.circular(15),
-                  //     //         image: DecorationImage(
-                  //     //           image: AssetImage(widget.food.image),
-                  //     //           fit: BoxFit.fill,
-                  //     //         ),
-                  //     //       ),
-                  //     //     ),
-                  //     //     const SizedBox(width: 10),
-                  //     //     const Text(
-                  //     //       "Ramen Noodles",
-                  //     //       style: TextStyle(
-                  //     //         fontSize: 16,
-                  //     //         fontWeight: FontWeight.bold,
-                  //     //       ),
-                  //     //     ),
-                  //     //     const Spacer(),
-                  //     //     Text(
-                  //     //       "400g",
-                  //     //       style: TextStyle(
-                  //     //         fontSize: 16,
-                  //     //         color: Colors.grey.shade400,
-                  //     //       ),
-                  //     //     )
-                  //     //   ],
-                  //     // ),
-                  //     // Divider(
-                  //     //   height: 20,
-                  //     //   color: Colors.grey.shade300,
-                  //     // ),
-                  //     // Row(
-                  //     //   children: [
-                  //     //     Container(
-                  //     //       width: 60,
-                  //     //       height: 60,
-                  //     //       decoration: BoxDecoration(
-                  //     //         borderRadius: BorderRadius.circular(15),
-                  //     //         image: DecorationImage(
-                  //     //           image: AssetImage(widget.food.image),
-                  //     //           fit: BoxFit.fill,
-                  //     //         ),
-                  //     //       ),
-                  //     //     ),
-                  //     //     const SizedBox(width: 10),
-                  //     //     const Text(
-                  //     //       "Ramen Noodles",
-                  //     //       style: TextStyle(
-                  //     //         fontSize: 16,
-                  //     //         fontWeight: FontWeight.bold,
-                  //     //       ),
-                  //     //     ),
-                  //     //     const Spacer(),
-                  //     //     Text(
-                  //     //       "400g",
-                  //     //       style: TextStyle(
-                  //     //         fontSize: 16,
-                  //     //         color: Colors.grey.shade400,
-                  //     //       ),
-                  //     //     )
-                  //     //   ],
-                  //     // ),
-                  //   ],
-                  // ),
+                  Text(
+                    widget.food.description,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -361,4 +269,11 @@ class _RecipeScreenState extends State<RecipeScreen> {
       ),
     );
   }
+ void addToFavorite(String name, double price) {
+    setState(() {
+      // Add the item to the favorite list
+      CartState.cartItems.add({'name': name, 'price': price});
+    });
+  }
 }
+
