@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_example/constants.dart';
 import 'package:food_example/firebase_options.dart';
+import 'package:food_example/screens/adminn/home_admin.dart';
 import 'package:food_example/screens/intro_login_register/intro_page.dart';
 import 'package:food_example/screens/main_screen.dart';
 import 'package:food_example/screens/profill/profile.dart';

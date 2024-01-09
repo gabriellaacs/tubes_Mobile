@@ -88,7 +88,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 Positioned(
                   child: Container(
                     width: double.infinity,
-                    height: 130,
+                    height: 350,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(

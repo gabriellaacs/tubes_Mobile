@@ -36,7 +36,7 @@ class IntroPage extends StatelessWidget {
                     
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      'assets/images/explore.jpg',
+                      'assets/images/logo.png',
                       height: 300,
                       width: 300,
                     ),
